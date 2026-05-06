@@ -58,6 +58,7 @@ SELECT *
 FROM person.EmailAddress
 WHERE BusinessEntityID = 26;
 
+
 SELECT count(DISTINCT Title)
 FROM person.Person;
 
@@ -90,5 +91,89 @@ SELECT TOP 4 name, ProductNumber
 FROM Production.Product
 ORDER BY ProductID;
 
+git add .
+git commit -m "update"
+git push
+
+-- FILTRAGEM DE VALOR ATÉ TAL VALOR "valor >= minimo and valor <= maximo;"
+SELECT * 
+FROM Production.Product
+WHERE ListPrice between 1000 and 1500;
+
+SELECT * 
+FROM Production.Product
+WHERE ListPrice NOT BETWEEN 1000 and 1500;
+
+SELECT *
+FROM HumanResources.Employee
+WHERE HireDate BETWEEN '2009/01/01' and '2010/01/01'
+ORDER BY HireDate
+
+-- OPERADOR "IN" JUNTAMENTE COM WHERE PARA VERIFICAR SE O VALOR CORRESPONDE COM QUALQUER VALOR NA LISTA DE VALORES;
+
+SELECT *
+FROM Person.Person
+WHERE BusinessEntityID IN (2,7,13);
+
+-- DESAFIO DE ACHAR ALGUMA PESSOA DA QUAL NÃO SE LEMBRA O NOME AO CERTO, MAIS SABE QUE O NOME ERA "OVI..." ALGUMA COISA.
+
+SELECT*
+FROM Person.Person
+WHERE FirstName LIKE 'ovi%';
+
+SELECT*
+FROM Person.Person
+WHERE FirstName LIKE '%to'; -- % no começo para recordar de uma parte final do nome
+
+SELECT*
+FROM Person.Person
+WHERE FirstName LIKE '%vane%'; --% no meio para recordar de uma parte do meio do nome
+
+SELECT*
+FROM Person.Person
+WHERE FirstName LIKE '%ro_'; -- 1 caracte após o "ro"
+
+-- DESAFIO FUNDAMENTOS SQL ATÉ AGORA
+-- 1 = QUANTOS PRODUTOS TEMOS CADASTRADO NO SISTEMA  QUE CUSTAM MAIS QUE 1500 DOLARES?
 
 
+SELECT count(ListPrice)
+FROM Production.Product
+WHERE ListPrice >= 1500;
+
+-- 2 = QUANTAS PÉSSOAS TEMOS COM O SOBRENOME QUE INICIA COM A LETRA P 
+
+SELECT LastName
+FROM Person.Person
+WHERE LastName LIKE 'P%';
+
+SELECT COUNT(LastName)
+FROM Person.Person
+WHERE LastName LIKE 'P%';
+
+-- 3 = EM QUANTAS CIDADES UNICAS ESTAO CADASTRADOS OS NOSSSOS CLIENTES
+
+SELECT COUNT(DISTINCT City)
+FROM Person.Address;
+
+-- 4 = QUAIS SAO AS CIDADES UNICAS QUE TEMOS CADASTRADOS EM NOSSO SISTEMA
+
+SELECT DISTINCT (City)
+FROM Person.Address;
+
+-- 5 = QUANTOS PRODUTOS VERMELHOS TEM PRECO ENTRE 500 A 1000 DOLARES
+
+SELECT COUNT(*)
+FROM Production.Product
+WHERE color = 'RED'
+AND ListPrice BETWEEN 500 and 1000;
+
+-- 6 = QUANTOS PRODUTOS CADASTRADOS TEM A PALAVRA 'ROAD' NO NOME DELES
+
+SELECT COUNT(*)
+FROM Production.Product
+WHERE Name LIKE '%road%';
+
+SELECT (Name)
+FROM Production.Product
+WHERE Name LIKE '%road%';

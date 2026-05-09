@@ -1,10 +1,5 @@
 # Projeto SQL - AdventureWorks
 
-Consultas SQL feitas durante estudos:
-
-- Seleção de dados
-- Filtros com WHERE
-- JOINs
-- Agrupamentos
+Consultas SQL feitas durante estudos
 
 Banco usado: AdventureWorks
